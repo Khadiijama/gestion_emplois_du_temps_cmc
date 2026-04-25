@@ -13,6 +13,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('/schedule/pdf', [ScheduleController::class, 'downloadPdf'])->name('schedule.pdf');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

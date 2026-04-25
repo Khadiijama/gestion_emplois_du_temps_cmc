@@ -182,10 +182,10 @@
                 <i class="bi bi-house"></i>
                 <span class="d-none d-sm-inline">Accueil</span>
             </a>
-            <button onclick="window.print()" class="btn-nav btn-nav-dark">
-                <i class="bi bi-printer"></i>
-                <span class="d-none d-sm-inline">Imprimer</span>
-            </button>
+            <a href="{{ route('schedule.pdf', ['groupe_id' => request('groupe_id')]) }}" class="btn-nav btn-nav-dark">
+                <i class="bi bi-file-earmark-pdf-fill" style="color: #ef4444;"></i>
+                <span class="d-none d-sm-inline">Télécharger PDF</span>
+            </a>
             <a href="{{ route('login') }}" class="btn-nav btn-nav-primary">
                 <i class="bi bi-lock-fill"></i>
                 <span class="d-none d-sm-inline">Espace Admin</span>
@@ -209,6 +209,11 @@
                 <i class="bi bi-search" style="color: var(--cmc);"></i>
                 Rechercher un planning
             </div>
+            @if(session('error'))
+                <div class="alert alert-danger" style="font-size: 14px; font-weight: 600; padding: 10px; border-radius: 8px;">
+                    <i class="bi bi-exclamation-triangle-fill"></i> {{ session('error') }}
+                </div>
+            @endif
             <form action="{{ route('schedule.index') }}" method="GET">
                 <div class="row g-3 align-items-end">
                     <div class="col-12 col-md-5">
