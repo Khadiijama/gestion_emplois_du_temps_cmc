@@ -186,10 +186,24 @@
                 <i class="bi bi-file-earmark-pdf-fill" style="color: #ef4444;"></i>
                 <span class="d-none d-sm-inline">Télécharger PDF</span>
             </a>
-            <a href="{{ route('login') }}" class="btn-nav btn-nav-primary">
-                <i class="bi bi-lock-fill"></i>
-                <span class="d-none d-sm-inline">Espace Admin</span>
-            </a>
+            @auth
+                <a href="{{ route('dashboard') }}" class="btn-nav btn-nav-primary">
+                    <i class="bi bi-speedometer2"></i>
+                    <span class="d-none d-sm-inline">Mon Espace ({{ ucfirst(auth()->user()->role) }})</span>
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn-nav btn-nav-dark">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="d-none d-sm-inline">Déconnexion</span>
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn-nav btn-nav-primary">
+                    <i class="bi bi-lock-fill"></i>
+                    <span class="d-none d-sm-inline">Espace Admin</span>
+                </a>
+            @endauth
         </div>
     </nav>
 

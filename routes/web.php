@@ -21,24 +21,27 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Routes
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
     Route::resource('seances', AdminSeanceController::class)->except(['show', 'edit', 'update']);
 });
 
 // Formateur Routes
-Route::middleware(['auth'])->prefix('formateur')->name('formateur.')->group(function () {
+Route::middleware(['auth', 'role:formateur'])->prefix('formateur')->name('formateur.')->group(function () {
     Route::get('/dashboard', [FormateurDashboard::class, 'index'])->name('dashboard');
 });
 
 // General dashboard redirect based on role
 Route::get('/dashboard', function () {
     $user = Auth::user();
-    if ($user->role === 'admin') {
+    $role = strtolower(trim($user->role));
+    
+    if ($role === 'admin') {
         return redirect()->route('admin.dashboard');
-    } elseif ($user->role === 'formateur') {
+    } elseif ($role === 'formateur') {
         return redirect()->route('formateur.dashboard');
     }
+    
     return redirect()->route('schedule.index'); // Default for stagiaire or others
 })->middleware(['auth', 'verified'])->name('dashboard');
 

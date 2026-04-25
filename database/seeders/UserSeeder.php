@@ -130,6 +130,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        $this->command->info('✅ Users et Formateurs créés.');
+        $this->command->info('Users et Formateurs créés.');
     }
 }

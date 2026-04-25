@@ -172,9 +172,18 @@
             </div>
         </div>
         @auth
-            <a href="{{ url('/dashboard') }}" class="btn-nav-login">
-                <i class="bi bi-speedometer2"></i> Mon Espace
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="{{ url('/dashboard') }}" class="btn-nav-login">
+                    <i class="bi bi-speedometer2"></i> 
+                    Mon Espace ({{ ucfirst(auth()->user()->role) }})
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn-nav-login" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #fca5a5;" title="Déconnexion">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
         @else
             <a href="{{ route('login') }}" class="btn-nav-login">
                 <i class="bi bi-lock-fill"></i> Connexion
@@ -258,9 +267,15 @@
                         </div>
                         <h3>Espace Formateur</h3>
                         <p>Accédez à votre emploi du temps personnel et consultez celui des groupes par filière.</p>
-                        <a href="{{ route('login') }}" class="btn-role" style="background:#d97706; color:white;">
-                            <i class="bi bi-box-arrow-in-right"></i> Se connecter
-                        </a>
+                        @auth
+                            <a href="{{ route('dashboard') }}" class="btn-role" style="background:#d97706; color:white;">
+                                <i class="bi bi-speedometer2"></i> Accéder à mon espace
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-role" style="background:#d97706; color:white;">
+                                <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                            </a>
+                        @endauth
                     </div>
                 </div>
 
@@ -272,9 +287,15 @@
                         </div>
                         <h3>Administration</h3>
                         <p>Gestion complète : planification des séances, filières, formateurs, salles et statistiques.</p>
-                        <a href="{{ route('login') }}" class="btn-role" style="background:#be185d; color:white;">
-                            <i class="bi bi-lock-fill"></i> Espace Admin
-                        </a>
+                        @auth
+                            <a href="{{ route('dashboard') }}" class="btn-role" style="background:#be185d; color:white;">
+                                <i class="bi bi-speedometer2"></i> Accéder à l'espace Admin
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-role" style="background:#be185d; color:white;">
+                                <i class="bi bi-lock-fill"></i> Espace Admin
+                            </a>
+                        @endauth
                     </div>
                 </div>
 
