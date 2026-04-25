@@ -35,7 +35,7 @@ Le système est divisé en **3 espaces distincts** selon les rôles :
 ## 🛠️ Technologies Utilisées
 
 - **Backend** : PHP 8.2+, Framework Laravel
-- **Base de données** : SQLite (idéal pour le prototypage/local) avec support MySQL/PostgreSQL pour la production.
+- **Base de données** : MySQL (via XAMPP recommandé) avec support SQLite pour le prototypage.
 - **Frontend** : HTML5, CSS Vanilla, Bootstrap 5.3 (Redesign complet de l'UI).
 - **Architecture** : MVC (Modèle-Vue-Contrôleur)
 - **Authentification** : Laravel Breeze
@@ -88,12 +88,16 @@ Pour lancer le projet sur votre machine (nécessite PHP 8.2+ et Composer) :
 Le `DatabaseSeeder` génère des comptes prêts à l'emploi :
 
 **Administrateur :**
-- Email : `admin@cmc.ma`
-- Mot de passe : `password`
+- Email : `admin@cmc-rsk.ma`
+- Mot de passe : `Admin@2025`
 
 **Formateur (Exemple) :**
-- Email : `imane.fritet@ofppt.ma` (ou les autres emails générés)
-- Mot de passe : `password`
+- Email : `imane.fritet@cmc-rsk.ma`
+- Mot de passe : `Formateur@2025`
+
+**Stagiaire (Exemple) :**
+- Email : `khadija.maaz@cmc-rsk.ma`
+- Mot de passe : `Stagiaire@2025`
 
 ---
 
