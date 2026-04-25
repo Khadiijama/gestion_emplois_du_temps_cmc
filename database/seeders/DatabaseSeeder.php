@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
             SalleSeeder::class,
             UserSeeder::class,
             GroupeSeeder::class,
-            // FormateurGroupeSeeder désactivé car la table n'existe pas
             SeanceSeeder::class,
         ]);
     }

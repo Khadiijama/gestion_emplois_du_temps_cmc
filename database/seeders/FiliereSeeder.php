@@ -31,6 +31,6 @@ class FiliereSeeder extends Seeder
             Filiere::create($filiere);
         }
 
-        $this->command->info('✅ Filières créées : ' . count($filieres));
+        $this->command->info('Filières créées : ' . count($filieres));
     }
 }
